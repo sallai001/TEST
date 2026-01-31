@@ -1,4 +1,4 @@
-name: ubuntu linux x86
+name: ubuntu-arm
 
 on:
   workflow_dispatch:
