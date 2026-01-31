@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Configure SSH Server
         run: |
-          # 1. 安装并启动 OpenSSH 服务器
+          # 1. 更新包列表并安装 OpenSSH 服务器
           sudo apt-get update
           sudo apt-get install -y openssh-server
 
@@ -20,9 +20,16 @@ jobs:
           sudo sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 
           # 3. 重启 SSH 服务使配置生效
-          sudo systemctl restart sshd
+          # 在 Ubuntu 24.04 中，服务名是 `ssh` 而不是 `sshd`
+          sudo systemctl restart ssh
 
-          # 4. 确保防火墙允许 SSH (GitHub Runner 环境通常已开放)
+          # 4. 检查 SSH 服务状态，确保其正在运行
+          sudo systemctl status ssh --no-pager -l
+
+          # 5. 可选：设置 SSH 服务开机自启（在当前临时环境中非必须）
+          # sudo systemctl enable ssh
+
+          # 6. 确保防火墙允许 SSH (GitHub Runner 环境通常已开放)
           sudo ufw allow 22/tcp 2>/dev/null || true
 
       - name: Create SSH User and Set Password
