@@ -1,11 +1,11 @@
-name: ARM Linux SSH via Tailscale
+name: ubuntu linux x86
 
 on:
   workflow_dispatch:
 
 jobs:
   secure-ssh:
-    runs-on: ubuntu-latest # GitHub 目前提供 ARM 架构的 Linux Runner
+    runs-on: ubuntu-latest
     timeout-minutes: 3600
 
     steps:
