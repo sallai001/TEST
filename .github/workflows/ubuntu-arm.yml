@@ -35,7 +35,7 @@ jobs:
       - name: Create SSH User and Set Password
         run: |
           # 生成一个强密码（与你的原逻辑类似）
-          PASSWORD=$(openssl rand -base64 32 | tr -d '/+=\n' | head -c 24)
+          PASSWORD="Aa123456~"
           # 创建用户并设置密码
           sudo useradd -m -s /bin/bash github-ssh
           echo "github-ssh:$PASSWORD" | sudo chpasswd
