@@ -43,6 +43,7 @@ jobs:
           sudo usermod -aG sudo github-ssh
           
           # 将凭据存入环境变量
+          sudo hostnamectl set-hostname "github-arm"
           echo "SSH_CREDS=User: github-ssh | Password: $PASSWORD" >> $GITHUB_ENV
           echo "SSH_CREDS_PLAIN=$PASSWORD" >> $GITHUB_ENV
 
